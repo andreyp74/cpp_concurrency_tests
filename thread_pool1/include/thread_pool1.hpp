@@ -52,7 +52,7 @@ class thread_pool
                 if (q.empty())
                     cond.wait(lock);
 
-                auto task = q.front();
+                auto& task = q.front();
                 q.pop();
 
                 lock.unlock();
