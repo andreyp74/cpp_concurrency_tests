@@ -13,9 +13,11 @@ int main()
 {
     std::srand(std::time(nullptr));
 
-    thread_pool pool(10);
+    auto hc = std::thread::hardware_concurrency();
+    std::cout << "Starting thread pool of " << hc << std::endl;
+    thread_pool pool(hc);
 
-    for(int i = 0; i < 10000; ++i)
+    for(int i = 0; i < 100; ++i)
     {
         //std::function<int()> f;
         pool.schedule(&func);

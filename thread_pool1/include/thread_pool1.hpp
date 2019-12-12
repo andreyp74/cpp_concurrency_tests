@@ -20,8 +20,14 @@ class thread_pool
 
         thread_pool(int thread_pool_size) : thread_pool_size(thread_pool_size)
         {
-            for(int i = 0; i < thread_pool_size; ++i)
-                pool.emplace_back(std::thread(&thread_pool::thread_func, this));
+            try{
+                for(int i = 0; i < thread_pool_size; ++i)
+                    pool.emplace_back(std::thread(&thread_pool::thread_func, this));
+            }
+            catch (std::exception& e){
+                stop();
+                throw;
+            }
         }
 
         ~thread_pool()
@@ -57,8 +63,13 @@ class thread_pool
 
                 lock.unlock();
 
-                auto result = task();
-                std::cout << "task finished with code: " << result << std::endl;
+                try{
+                    auto result = task();
+                    std::cout << "task finished with code: " << result << std::endl;
+                }
+                catch (std::exception& e) {
+                    std::cout << "ERROR: " << e.what() << std::endl;
+                }
             }
         }
 };
