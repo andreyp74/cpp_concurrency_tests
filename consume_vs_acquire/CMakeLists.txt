@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.8)
 
-set(PROJECT_NAME_STR test_thread_pool)
+set(PROJECT_NAME_STR consume_vs_acquire)
 
 project(${PROJECT_NAME_STR} CXX C)
 
@@ -19,9 +19,9 @@ if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 endif()
 
-file(GLOB_RECURSE TEST_THREAD_POOL_SRCS
+file(GLOB_RECURSE CONSUME_VS_ACQUIRE_SRCS
         RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp)
 
-add_executable(${PROJECT_NAME_STR} ${TEST_THREAD_POOL_SRCS})
+add_executable(${PROJECT_NAME_STR} ${CONSUME_VS_ACQUIRE_SRCS})

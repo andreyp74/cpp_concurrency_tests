@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.16)
+cmake_minimum_required (VERSION 3.8)
 
 set(PROJECT_NAME_STR test_mutex_on_atomic)
 
